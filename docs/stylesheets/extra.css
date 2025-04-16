@@ -1,0 +1,9 @@
+/*
+Sandia Color Palette
+https://thunderbird.sandia.gov/
+*/
+:root {
+    --md-primary-fg-color:        #0076a9;
+    --md-primary-fg-color--light: #00add0;
+    --md-primary-fg-color--dark:  #002b4c;
+  }

@@ -1,0 +1,132 @@
+site_name: "ENnUI : Exemplar Navigator Using Inertial Sensors"
+site_dir: build-site
+
+extra_css:
+  - stylesheets/extra.css
+
+theme:
+  logo: assets/Sandia_Logo_Stacked_White.png
+  name: material
+  features:
+    - navigation.tabs
+    #- navigation.indexes
+    - navigation.top
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: turquoise
+      accent: lime
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: turquoise
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# Required for mkdoxy to link source files correctly
+use_directory_urls: False
+
+plugins:
+  - search
+  - mkdoxy:
+      #enabled: !ENV [ENABLE_MKDOXY, True]
+      projects:
+        src: # name of project must be alphanumeric + numbers (without spaces)
+          src-dirs: Ennui # path to source code (support multiple paths separated by space) => INPUT
+          full-doc: True # if you want to generate full documentation (i.e. from source code)
+          doxy-cfg: # standard doxygen configuration (key: value)
+            FILE_PATTERNS: "*.cpp *.h*" # specify file patterns to filter out
+            EXAMPLE_PATH: examples
+            RECURSIVE: True # recursive search in source directories'
+            # LET's TRY THIS
+            GENERATE_XML: YES
+            GENERATE_LATEX: NO
+            GENERATE_HTML: NO
+            # END TRY
+            #USE_MATHJAX: YES
+            #GENERATE_HTML: YES
+            #CITE_BIB_FILES : "docs/bibs.bib"
+            #GENERATE_LATEX: YES
+            #LATEX_BIB_STYLE: plain
+            #LATEX_OUTPUT: latex
+            #LATEX_CMD_NAME: latex #latex command name to be called from terminal
+      save-api: .mkdoxy
+      full-doc: True
+      debug: False
+      ignore-errors: False
+  - bibtex:
+      bib_file: 'docs/bibs.bib'
+  - mkdocs-jupyter
+
+markdown_extensions:
+  - pymdownx.blocks.html #Enable two columns
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.extra:
+      pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.mark
+  - attr_list
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+# Site Navigation
+#   See mkdoxy example: https://github.com/JakubAndrysek/MkDoxy-demo/blob/main/mkdocs.yml
+nav:
+  - "Home":
+    - "index.md"
+    - Quick Start: "quickstart.md"
+    - Organization: "organization.md"
+    - Development: "development.md"
+  - python binding: "demos/pyennui_demo.ipynb"
+  - MATLAB dll: "demos/mennui_build_library.md"
+  - API:
+    - api/index.md
+    - "Class List": "src/annotated.md"
+    - "Functions": "src/namespace_member_functions.md"
+    - "Files": "src/files.md"
+    - "Macros": "src/macros.md"
+    - "Index":
+        - "Class Index": "src/classes.md"
+        - "Class Hierarchy": "src/hierarchy.md"
+        - "Class Members": "src/class_members.md"
+        - "Class Member Functions": "src/class_member_functions.md"
+        - "Namespace Member Typedefs": "src/namespace_member_typedefs.md"
+    - "Files": "src/files.md"
+    #- "Bibliography": "src/citelist.md"
+  - About : "about.md"

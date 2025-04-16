@@ -1,0 +1,43 @@
+[build-system]
+requires = ["scikit-build-core-conan>=0.4", "scikit-build-core>=0.10"]
+build-backend = "scikit_build_core_conan.build"
+
+[project]
+name = "pyennui"
+version = "0.0.1"
+description = "ennui: exemplar navigator using inertial sensors"
+readme.content-type = "text/markdown"
+readme.text = """
+ENnUI : exemplar navigator using inertial sensors
+![nanobind logo](
+https://github.com/wjakob/nanobind/raw/master/docs/images/logo.jpg?raw=True)
+"""
+authors = [
+    { name = "Michael R. Walker II", email = "mrw2@ieee.org" },
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: C++",
+    "Programming Language :: C++ :: Eigen",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://ennui.readthedocs.io/"
+
+
+[tool.scikit-build]
+build.verbose = true
+logging.level = "INFO"
+minimum-version = "build-system.requires"
+wheel.platlib = false
+wheel.packages = []
+cmake.define.NB_TEST = false
+cmake.define.PYTHON_MODULE = true
+
+[tool.pytest.ini_options]
+testpaths = [ "tests_py" ]
