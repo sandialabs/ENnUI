@@ -8,10 +8,10 @@ on: [push]
 
 jobs:
   build-wheels-macosx-arm64:
-    runs-on: ubi9-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Yum installs
-        run: yum install -y llvm-toolset cmake pip
+        run: apt install -y llvm-toolset cmake pip
       - name: Pip installs
         run: pip install --no-input conan
       - name: Conan profile detect
