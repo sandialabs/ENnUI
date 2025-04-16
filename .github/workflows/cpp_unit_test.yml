@@ -1,0 +1,31 @@
+name: cpp_unit_test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-wheels-macosx-arm64:
+    runs-on: ubi9-latest
+    steps:
+      - name: Yum installs
+        run: yum install -y llvm-toolset cmake pip
+      - name: Pip installs
+        run: pip install --no-input conan
+      - name: Conan profile detect
+        run: conan profile detect
+      - name: Conan install
+        run: conan install . -s build_type=Release --settings:all compiler.cppstd=17
+      - name: Cmake generator
+        run: cmake --preset conan-release
+      - name: Build
+        run: cmake --build . --preset conan-release --target Ennui_test
+      - name: Run tests
+        run: build/Release/bin/Ennui_test --reporter junit -o test-results.xml
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit
+          path: test-results.xml
