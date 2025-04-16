@@ -12,8 +12,7 @@ Folder contents:
   [clib](https://www.mathworks.com/help/matlab/use-prebuilt-matlab-interface-to-c-library.html)).
 - ``scripts\`` : utility scripts for building and testing. Run from root folder.
 - ``docs\`` : content for generating the [static
-  website](http://mrwalke.cee-gitlab.lan/ennui/) through the CI/CD pipeline
-  (``../.gitlab-ci.yml``).
+  website](https://ennui.readthedocs.io/).
 
 ## Namespaces
 Namespace and template usage here is intended to generalize models across multiple use-cases and implementations.  For example, gravitation models are required for state propagation using inertial sensors. Equations to compute gravitation are parameterized by a geodetic model (e.g. WGS84[@NGA-STND-0036]). For a particular use-case, the mechanization reference frame (e.g. ECEF) will also inform selection of a gravitation equation.
