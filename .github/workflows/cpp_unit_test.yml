@@ -1,46 +1,37 @@
 name: cpp_unit_test
 
-on: [push]
-  # push:
-  #  branches: [ "main" ]
-  # pull_request:
-  #  branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   run-unit-tests-cpp:
     runs-on: ubuntu-latest
-    # container:
-    #   image: quay.io/pypa/manylinux_2_28_x86_64
-    #   options: --cpus 1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
       - name: Conan version
         run: echo "${{ steps.conan.outputs.version }}"
-        # with:
-        #   fetch-depth: 0
-      # - name: Ensure pip is installed
-      #   run: python3 -m ensurepip --upgrade
-      # - name: Get Conan for dependencies
-      #   run: pip3 install conan
       - name: Detect Conan profile
         run: conan profile detect --force
-      #- name: Yum installs
-      #  run: yum install -y llvm-toolset cmake pip
+      
       - name: Conan install
         run: conan install . -s build_type=Release -b missing --settings:all compiler.cppstd=17
+
       - name: Cmake generator
         run: cmake --preset conan-release
+
       - name: Build
         run: cmake --build . --preset conan-release --target Ennui_test
+      
       - name: Run tests
-        run: build/Release/bin/Ennui_test  | tee ../test-results.txt
-        #run: build/Release/bin/Ennui_test --reporter junit -o test-results.xml
-      # - name: Upload math result for job 1
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: junit
-      #     path: test-results.xml
+        run: build/Release/bin/Ennui_test --reporter junit -o test-results.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit
+          path: test-results.xml
+      
