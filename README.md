@@ -1,3 +1,10 @@
+![Lines of code](https://sloc.xyz/github/sandialabs/ennui/?category=code)
+[![Test status](https://github.com/sandialabs/ENnUI/actions/workflows/cpp_unit_test.yml/badge.svg)](https://github.com/sandialabs/ENnUI/actions/workflows/cpp_unit_test.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sandialabs/ennui/pre-commit.yml?logo=pre-commit&label=pre-commit)
+[![Documentation Status](https://readthedocs.org/projects/ennui/badge/?version=latest)](http://ennui.readthedocs.io/en/latest/?badge=latest)
+[![GitHub License](https://img.shields.io/github/license/sandialabs/ennui)](https://github.com/sandialabs/ENnUI/blob/main/LICENSE)
+
+
 # ENnUI : Exemplar Navigator Using Inertial Sensors
 
 ENNuI is a collection of inertial navigation equations designed to be

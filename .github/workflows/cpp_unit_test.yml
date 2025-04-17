@@ -1,0 +1,36 @@
+name: cpp_unit_test
+
+on: [push, pull_request]
+
+jobs:
+  run-unit-tests-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Conan
+        id: conan
+        uses: turtlebrowser/get-conan@main
+      - name: Conan version
+        run: echo "${{ steps.conan.outputs.version }}"
+      - name: Detect Conan profile
+        run: conan profile detect --force
+
+      - name: Conan install
+        run: conan install . -s build_type=Release -b missing --settings:all compiler.cppstd=17
+
+      - name: Cmake generator
+        run: cmake --preset conan-release
+
+      - name: Build
+        run: cmake --build . --preset conan-release --target Ennui_test
+
+      - name: Run tests
+        run: build/Release/bin/Ennui_test --reporter junit -o test-results.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit
+          path: test-results.xml
