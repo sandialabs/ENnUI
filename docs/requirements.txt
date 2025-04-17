@@ -1,4 +1,4 @@
-mkdocs-material 
-mkdocs-bibtex 
-mkdoxy 
+mkdocs-material
+mkdocs-bibtex
+mkdoxy
 mkdocs-jupyter
