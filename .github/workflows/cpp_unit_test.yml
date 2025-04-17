@@ -31,9 +31,10 @@ jobs:
       - name: Build
         run: cmake --build . --preset conan-release --target Ennui_test
       - name: Run tests
-        run: build/Release/bin/Ennui_test --reporter junit -o test-results.xml
-      - name: Upload math result for job 1
-        uses: actions/upload-artifact@v4
-        with:
-          name: junit
-          path: test-results.xml
+        run: build/Release/bin/Ennui_test  | tee ../test-results.txt
+        #run: build/Release/bin/Ennui_test --reporter junit -o test-results.xml
+      # - name: Upload math result for job 1
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: junit
+      #     path: test-results.xml
