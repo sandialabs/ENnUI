@@ -25,7 +25,7 @@ jobs:
       #- name: Yum installs
       #  run: yum install -y llvm-toolset cmake pip
       - name: Conan install
-        run: conan install . -s build_type=Release --settings:all compiler.cppstd=17
+        run: conan install . -s build_type=Release -b missing --settings:all compiler.cppstd=17
       - name: Cmake generator
         run: cmake --preset conan-release
       - name: Build
