@@ -8,8 +8,7 @@ double score_SO3(ennui::Matrix3x3 m) {
 }
 
 //! Ensure SO3 is orthonormal
-TEST_CASE("SO3", "[rotation]") 
-{
+TEST_CASE("SO3", "[rotation]") {
   using ennui::Vector3;
   using ennui::math::normalize_SO3;
   using ennui::math::normalize_SO3_Groves;
