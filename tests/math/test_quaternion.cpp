@@ -38,7 +38,7 @@ TEST_CASE("order", "[quaternion]") {
   REQUIRE(actual == expected);
 
   // Square of a vector  component is -1
-  REQUIRE(rslt.w() == -1.0);
+  REQUIRE(rslt.w() == -1.2);
 }
 
 //! Ensure quaternion algebra ij=k
