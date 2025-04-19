@@ -3,6 +3,12 @@
 find_package(Python REQUIRED COMPONENTS Interpreter Development.Module
 OPTIONAL_COMPONENTS Development.SABIModule)
 
+
+# Detect the installed nanobind package and import it into CMake
+execute_process(
+  COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
+  OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE nanobind_ROOT)
+  
 # Import nanobind
 find_package(nanobind CONFIG REQUIRED)
 
