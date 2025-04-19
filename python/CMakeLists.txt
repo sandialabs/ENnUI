@@ -8,7 +8,7 @@ OPTIONAL_COMPONENTS Development.SABIModule)
 execute_process(
   COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
   OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE nanobind_ROOT)
-  
+
 # Import nanobind
 find_package(nanobind CONFIG REQUIRED)
 
