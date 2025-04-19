@@ -1,6 +1,7 @@
 
 # if source built locally...
 build/
+*.pyd
 
 # if docs built locally...
 build-site/

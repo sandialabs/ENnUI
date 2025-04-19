@@ -61,19 +61,7 @@ option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static on
 SET (LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin CACHE INTERNAL "Single output directory for building all libraries.")
 SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin CACHE INTERNAL "Single output directory for building all executables.")
 
-if(UNIX)
-  include(GNUInstallDirs)
-else()
-  if (WIN32)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-    set(CMAKE_INSTALL_DATADIR "share")
-    set(CMAKE_INSTALL_INCLUDEDIR "include")
-    set(CMAKE_INSTALL_BINDIR "bin")
-    message(STATUS "Setting installation destination on Windows to: ${CMAKE_INSTALL_PREFIX}")
-  else()
-    message(FATAL_ERROR "System not UNIX nor WIN32 - not implemented yet")
-  endif()
-endif()
+include(GNUInstallDirs)
 
 find_package(Eigen3 REQUIRED)
 

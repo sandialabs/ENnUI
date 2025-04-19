@@ -14,5 +14,6 @@ dependencies:
       # development
       - pre-commit>=3.8.0
       # documentation
-      - mkdocs-material>=9.5.30
-      - mkdoxy>=1.2.4
+      - -r docs/requirements.txt
+      # demos
+      - numpy
